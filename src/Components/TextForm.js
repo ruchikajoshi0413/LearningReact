@@ -39,15 +39,16 @@ export default function TextForm(props) {
         setText(newText.join(' '))
     } 
 
-    const[text, setText] = useState(" ");
+    const[text, setText] = useState("");
     // setText("Ruchika");
 
   return (
     <>
-    <div className='container' style={{backgroundColor: props.mode==='dark'?'gray':'white'}}>
-        {/* <h2>{props.heading}</h2> */}
+    <div className='container' style={{color: props.mode==='dark'?'white':'black'}}>
+        <h2>{props.heading}</h2>
         <div className="mb-3">
-            <textarea className="form-control my-1" value={text} style={{backgroundColor: props.mode==='dark'?'gray':'white'}} onChange={handleOnChange} id="myBox" rows="5"></textarea>
+            <textarea className="form-control my-1" value={text} style={{backgroundColor: props.mode==='dark'?'gray':'white', 
+            color: props.mode==='dark'?'white':'black'}} onChange={handleOnChange} id="myBox" rows="5"></textarea>
         </div>
         <button className="btn btn-success mx-1" onClick={handleUpSubmit}>To uppercase</button>
         <button className="btn btn-success mx-1" onClick={handleLoSubmit}>To lowercase</button>
@@ -56,12 +57,12 @@ export default function TextForm(props) {
         <button className="btn btn-success mx-1" onClick={handleCopy}>Copy text</button>
         <button className="btn btn-success mx-1" onClick={handleRemove}>Remove extra spaces</button>
     </div>
-    <div className="container my-3">
-        <p>Length of text:{text.length} and No. of words:{text.split(" ").length}</p>
+    <div className="container my-3" style={{color: props.mode==='dark'?'white':'black'}}>
+        <p>Length of text:{text.length} and No. of words:{text.length?text.split(" ").length:0}</p>
         <p>User will able to read it in {0.008*text.split(" ").length} minutes</p>
-    </div>
     <h2>Preview</h2>
-    <p>{text}</p>
+    <p>{text.length>0?text:'Enter some preview here'}</p>
+    </div>
     </>
   )
 } 
