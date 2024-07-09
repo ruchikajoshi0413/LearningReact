@@ -10,7 +10,7 @@ function App() {
   const toggleMode=()=>{
     if (mode === 'light') {
       setMode('dark');
-      document.body.style.background='gray'
+      document.body.style.background='#272a43'
     } else {
       setMode('light');
       document.body.style.background='white'
