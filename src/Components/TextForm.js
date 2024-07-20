@@ -6,21 +6,26 @@ export default function TextForm(props) {
         // console.log("It's clicked: " + text)
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to uppercase!", "success")
     }
 
     const handleLoSubmit=()=>{
         let lowerText = text.toLowerCase();
         setText(lowerText);
+        props.showAlert("Converted to lowercase!", "success")
         // console.log("Text is in lower case");
     }
     const handleClearSubmit=()=>{
         let clear = '';
         setText(clear);
+        props.showAlert("Clear text!", "success");
     }
 
-    const handleCupSubmit=()=>{
+    const handleCapSubmit=()=>{
         let newText = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
         setText(newText);
+        props.showAlert("Converted first letter to upercase!", "success")
+
     }
 
     const handleOnChange=(event)=>{
@@ -31,12 +36,14 @@ export default function TextForm(props) {
     const handleCopy=()=>{
         let newText = document.getElementById("myBox")
         newText.select();
-        navigator.clipboard.writeText(newText.value);     
+        navigator.clipboard.writeText(newText.value);
+        props.showAlert("Message copied to clipboard!", "success")
     }
 
     const handleRemove=()=>{
         let newText = text.split(/[ ]+/);
         setText(newText.join(' '))
+        props.showAlert("Extra spaces removed", "success")
     } 
 
     const[text, setText] = useState("");
@@ -53,7 +60,7 @@ export default function TextForm(props) {
         <button className="btn btn-success mx-1" onClick={handleUpSubmit}>To uppercase</button>
         <button className="btn btn-success mx-1" onClick={handleLoSubmit}>To lowercase</button>
         <button className="btn btn-success mx-1" onClick={handleClearSubmit}>Clear text</button>
-        <button className="btn btn-success mx-1" onClick={handleCupSubmit}>Capitalized text</button>
+        <button className="btn btn-success mx-1" onClick={handleCapSubmit}>Capitalized text</button>
         <button className="btn btn-success mx-1" onClick={handleCopy}>Copy text</button>
         <button className="btn btn-success mx-1" onClick={handleRemove}>Remove extra spaces</button>
     </div>
